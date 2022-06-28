@@ -27,6 +27,12 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Net::HTTP provides a rich library which can be used to build HTTP user-agents. [https://github.com/ruby/net-http]
+gem "net-http"
+
+# Nokogiri is an HTML, XML, SAX, and Reader parser. [https://github.com/sparklemotion/nokogiri]
+gem 'nokogiri'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
