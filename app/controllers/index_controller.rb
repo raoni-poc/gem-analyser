@@ -13,6 +13,20 @@ class IndexController < ApplicationController
       :page => 1,
     }
 
+    last_page = get_last_page(doc)
+    alphabet = ('A'..'Z').to_a
+
+    for page in 1..last_page do
+      for letter in  alphabet do
+        params[:page] = page
+        params[:letter] = letter
+        #gems = get_gems_of_page(params)
+        # save_gems_on_db(gems)
+      end
+    end
+  end
+
+  def get_gems_of_page(params)
     uri.query = URI.encode_www_form(params)
 
     res = Net::HTTP.get_response(uri)
@@ -30,9 +44,10 @@ class IndexController < ApplicationController
       result.push(line)
     }
 
-    last_page = get_last_page(doc)
+  end
 
-    result
+  def save_gems_on_db(result)
+
   end
 
   def get_download_count (line)
