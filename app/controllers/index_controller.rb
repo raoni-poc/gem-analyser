@@ -29,13 +29,15 @@ class IndexController < ApplicationController
       ]
       result.push(line)
     }
-    result
 
+    last_page = get_last_page(doc)
+
+    result
   end
 
   def get_download_count (line)
     count_line = line.search(".gems__gem__downloads__count")[0].text.split("\n")
-    count_line[1].strip.sub(',', '.')
+    count_line[1].strip.sub(',', '').to_i
   end
 
   def get_name (line)
@@ -53,5 +55,9 @@ class IndexController < ApplicationController
 
   def get_version (line)
     line.search(".gems__gem__version")[0].text
+  end
+
+  def get_last_page(doc)
+    doc.search(".last")[0].children[1].attributes['href'].value.split('=')[-1].to_i
   end
 end
